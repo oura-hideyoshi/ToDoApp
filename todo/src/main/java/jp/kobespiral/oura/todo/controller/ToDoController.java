@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jp.kobespiral.oura.todo.dto.MemberForm;
 import jp.kobespiral.oura.todo.dto.ToDoForm;
 import jp.kobespiral.oura.todo.entity.Member;
 import jp.kobespiral.oura.todo.entity.ToDo;

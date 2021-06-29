@@ -1,10 +1,8 @@
 package jp.kobespiral.oura.todo.service;
 
-import java.io.Console;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.type.TrueFalseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
