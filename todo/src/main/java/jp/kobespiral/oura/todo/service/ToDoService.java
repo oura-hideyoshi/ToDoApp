@@ -74,7 +74,7 @@ public class ToDoService {
     * @return
     */
    public List<ToDo> getToDoList(){
-       return tRepo.findAll();
+       return tRepo.findByDone(false);
    }
 
    /**

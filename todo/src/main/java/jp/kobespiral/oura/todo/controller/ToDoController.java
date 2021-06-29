@@ -34,9 +34,25 @@ public class ToDoController {
    */
   @GetMapping("/login") // ToDoApp/login とされたら
   String showLogin(Model model) {
-    MemberForm form = new MemberForm();
-    model.addAttribute("MemberForm", form); // login.html で ${MemberForm}が使えるようになる
+    System.out.println("login");
+    String mid = new String();
+    model.addAttribute("mid", mid); // login.html で ${ }が使えるようになる
     return "/login";
+  }
+
+  /**
+   * ログイン -> ここ(midが正しいか判断) ->
+   * 
+   * @param model
+   * @param mid
+   * @return
+   */
+  @GetMapping("/login-tmp")
+  String login(@ModelAttribute(name = "mid") String mid, Model model) {
+    System.out.println("login check mid : " + mid);
+    // TODO midの処理
+
+    return "redirect:/member/" + mid + "/todos";
   }
 
   /**
@@ -52,10 +68,10 @@ public class ToDoController {
     Member member = mService.getMember(mid);
     List<ToDo> todo_list = tService.getToDoList(mid);
     List<ToDo> done_list = tService.getDoneList(mid);
+    ToDoForm form = new ToDoForm();
     model.addAttribute("todo_list", todo_list);
     model.addAttribute("done_list", done_list);
-    ToDoForm form = new ToDoForm();
-    model.addAttribute("ToDoForm", form);
+    model.addAttribute("form", form);
     model.addAttribute("name", member.getName());
 
     return "todos";
@@ -70,21 +86,34 @@ public class ToDoController {
    * @return
    */
   @PostMapping(value = "/{mid}/check")
-  String checkToDoForm(@ModelAttribute(name = "ToDoForm") ToDoForm form, Model model, @PathVariable String mid) {
-    ToDo t = tService.createToDo(mid, form);
-    model.addAttribute("ToDoForm", t);
+  String checkToDoForm(@ModelAttribute(name = "form") ToDoForm form, Model model, @PathVariable String mid) {
+    System.out.println("<check> titel : " + form.getTitle());
+    model.addAttribute("form", form);
     return "todo_check";
   }
 
   @PostMapping("/{mid}/todos")
-  String createToDo(@ModelAttribute(name = "ToDoForm") ToDoForm form, Model model, @PathVariable String mid) {
+  String createToDo(@ModelAttribute(name = "title") String title, Model model, @PathVariable String mid) {
+    ToDoForm form = new ToDoForm();
+    form.setTitle(title);
     tService.createToDo(mid, form);
-    return showToDos(model, mid);
+    return "redirect:/member/" + mid + "/todos";
   }
 
   @GetMapping("/{mid}/done/{seq}")
-   String doneToDo(@PathVariable String mid, @PathVariable String seq, Model model) {
-       tService.setDone(Long.parseLong(seq));
-       return showToDos(model, mid);
-   }
+  String doneToDo(@PathVariable String mid, @PathVariable String seq, Model model) {
+    tService.setDone(Long.parseLong(seq));
+    return "redirect:/member/" + mid + "/todos";
+  }
+
+  @GetMapping("/{mid}/everyone")
+  String goEveryone(Model model, @PathVariable String mid) {
+    List<ToDo> todo_list = tService.getToDoList();
+    List<ToDo> done_list = tService.getDoneList();
+    List<Member> member_list = mService.getAllMembers();
+    model.addAttribute("todo_list_e", todo_list);
+    model.addAttribute("done_list_e", done_list);
+    model.addAttribute("member_list", member_list);
+    return "/everyone";
+  }
 }

@@ -11,7 +11,7 @@
     <p>
         以下のToDoを登録します．よろしければ登録を押してください．
     </p>
-    <form role="form" th:action="@{/member/{mid}/todos(mid=${mid})}" th:object="${ToDoForm}" method="post">
+    <form role="form" th:action="@{/member/{mid}/todos(mid=${mid})}" th:object="${form}" method="post">
         <p>
             <label>task: </label>
             [[*{title}]]
