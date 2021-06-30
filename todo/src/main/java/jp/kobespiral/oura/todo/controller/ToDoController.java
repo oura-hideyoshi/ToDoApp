@@ -36,7 +36,7 @@ public class ToDoController {
     System.out.println("login");
     String mid = new String();
     model.addAttribute("mid", mid); // login.html で ${ }が使えるようになる
-    return "/login";
+    return "/login"; 
   }
 
   /**
@@ -92,9 +92,7 @@ public class ToDoController {
   }
 
   @PostMapping("/{mid}/todos")
-  String createToDo(@ModelAttribute(name = "title") String title, Model model, @PathVariable String mid) {
-    ToDoForm form = new ToDoForm();
-    form.setTitle(title);
+  String createToDo(@ModelAttribute(name = "form") ToDoForm form, Model model, @PathVariable String mid) {
     tService.createToDo(mid, form);
     return "redirect:/member/" + mid + "/todos";
   }
