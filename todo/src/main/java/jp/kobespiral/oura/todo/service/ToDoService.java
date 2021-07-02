@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.cache.TTLCacheEntryValidity;
 
 import jp.kobespiral.oura.todo.dto.ToDoForm;
 import jp.kobespiral.oura.todo.entity.ToDo;
@@ -43,13 +44,14 @@ public class ToDoService {
     * @param mid
     * @return
     */
-    public void setDone(Long seq){
-        System.out.println(tRepo.findById(seq).get());
+    public ToDo setDone(Long seq){
+        // System.out.println(tRepo.findById(seq).get());
         ToDo t = tRepo.findById(seq).get();
-        tRepo.delete(t);
+        //tRepo.delete(t);
         t.setDone(true);
         t.setDoneAt(new Date());
         tRepo.save(t);
+        return t;
         // System.out.println(tRepo.findById(seq).get());
         // おそらく
     }
@@ -81,5 +83,25 @@ public class ToDoService {
    public List<ToDo> getDoneList(){
        return tRepo.findByDone(true);
    }
+
+   /**
+    * ToDoを更新
+    * @param seq
+    */
+    public ToDo updateToDo(String mid, Long seq, ToDoForm form){
+        ToDo t = tRepo.findById(seq).get();
+        t.setCreatedAt(new Date());
+        t.setMid(mid);
+        t.setTitle(form.getTitle());
+        return tRepo.save(t);
+    }
+
+   /**
+    * ToDoを削除
+    */
+    public void deleteToDo(Long seq){
+        ToDo t = this.getToDo(seq);
+        tRepo.delete(t);
+    }
    
 }

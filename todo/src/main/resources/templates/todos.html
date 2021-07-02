@@ -32,8 +32,9 @@
                 <td><a th:href=@{/member/{mid}/done/{seq}(mid=${mid},seq=${t.seq})}>完了</a></td>
             </tr>
         </table>
-
-        <label>新規ToDo作成<br></label>
+        <div class = "balloon1">
+            <p>新規ToDo作成<br></p>
+        </div>
         <div class="msr_search_06">
 
             <form role="form" th:action="@{/member/{mid}/check(mid=${mid})}" th:object="${form}" method="get">
