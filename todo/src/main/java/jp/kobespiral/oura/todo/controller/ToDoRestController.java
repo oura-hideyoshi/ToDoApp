@@ -36,10 +36,8 @@ public class ToDoRestController {
     MemberService memberService;
 
     /* --- C: ToDoを作成する --- */
-    // TODO
     @PostMapping("/{mid}/todos")
     ToDo createToDo(@PathVariable String mid, @Validated @RequestBody ToDoForm form) {
-        System.out.println(mid + form + "ERROR_@@@@@");
         return todoService.createToDo(mid, form);
     }
 
@@ -61,18 +59,21 @@ public class ToDoRestController {
         return todoService.getDoneList(mid);
     }
 
+    // TODO
     /* --- U: ToDoを完了する --- */
     @PutMapping("/{mid}/todos/{seq}/done")
     ToDo done(@PathVariable String mid, @PathVariable Long seq) {
         return todoService.setDone(seq);
     }
 
+    // TODO
     /* --- U: ToDoを更新する --- */
     @PutMapping("/{mid}/todos/{seq}")
     ToDo updateToDo(@PathVariable String mid, @PathVariable Long seq, @Validated @RequestBody ToDoForm form) {
         return todoService.updateToDo(mid, seq, form);
     }
 
+    // TODO
     /* --- D: ToDoを削除する --- */
     @DeleteMapping("/{mid}/todos/{seq}")
     boolean deleteToDo(@PathVariable String mid, @PathVariable Long seq) {
