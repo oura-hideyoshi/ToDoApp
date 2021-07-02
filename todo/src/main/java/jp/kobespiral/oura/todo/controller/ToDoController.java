@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +38,7 @@ public class ToDoController {
     System.out.println("login");
     String mid = new String();
     model.addAttribute("mid", mid); // login.html で ${ }が使えるようになる
-    return "/login"; 
+    return "/login";
   }
 
   /**
@@ -62,12 +64,12 @@ public class ToDoController {
    * @return
    */
   @GetMapping("/{mid}/todos")
-  String showToDos(Model model, @PathVariable String mid) {
+  String showToDos(@ModelAttribute ToDoForm form, Model model, @PathVariable String mid) {
 
     Member member = mService.getMember(mid);
     List<ToDo> todo_list = tService.getToDoList(mid);
     List<ToDo> done_list = tService.getDoneList(mid);
-    ToDoForm form = new ToDoForm();
+    // ToDoForm form = new ToDoForm();
     model.addAttribute("todo_list", todo_list);
     model.addAttribute("done_list", done_list);
     model.addAttribute("form", form);
@@ -84,8 +86,16 @@ public class ToDoController {
    * @param mid
    * @return
    */
-  @PostMapping(value = "/{mid}/check")
-  String checkToDoForm(@ModelAttribute(name = "form") ToDoForm form, Model model, @PathVariable String mid) {
+  @GetMapping(value = "/{mid}/check")
+  String checkToDoForm(@Validated @ModelAttribute(name = "form") ToDoForm form, BindingResult bindingResult,
+      Model model, @PathVariable String mid) {
+
+    // 入力チェックに引っかかった場合、ユーザー登録画面に戻る
+    if (bindingResult.hasErrors()) {
+
+      // GETリクエスト用のメソッドを呼び出して、ユーザー登録画面に戻る
+      return showToDos(form, model, mid);
+    }
     System.out.println("<check> titel : " + form.getTitle());
     model.addAttribute("form", form);
     return "todo_check";
@@ -97,6 +107,7 @@ public class ToDoController {
     return "redirect:/member/" + mid + "/todos";
   }
 
+  // TODO PUTでは？？？
   @GetMapping("/{mid}/done/{seq}")
   String doneToDo(@PathVariable String mid, @PathVariable String seq, Model model) {
     tService.setDone(Long.parseLong(seq));

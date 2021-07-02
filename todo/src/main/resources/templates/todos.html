@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href=@{/css/todo_css.css} />
     <title>ToDoリスト</title>
 </head>
 
@@ -13,16 +14,16 @@
             <td th:text="${name}"></td>
             <td>さんのToDoリスト</td>
         </h2>
-        <td><a th:href=@{/member/login}>[logout]</a></td>
     </tr>
     <tr>
         <!-- TODO INTERFACE -->
         <h2>ToDo</h2>
-        <table border="1">
+        <table border="1" class="msr_table03">
             <tr>
                 <th>Seq</th>
                 <th>Task</th>
                 <th>created at</th>
+                <th>command</th>
             </tr>
             <tr th:each="t: ${todo_list}">
                 <td>[[${t.seq}]]</td>
@@ -32,9 +33,19 @@
             </tr>
         </table>
 
+        <label>新規ToDo作成<br></label>
+        <div class="msr_search_06">
+
+            <form role="form" th:action="@{/member/{mid}/check(mid=${mid})}" th:object="${form}" method="get">
+                <input type="text" required th:field="*{title}" />
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red"></span>
+                <button type="submit">確認</button>
+            </form>
+        </div>
+
         <!-- DONE INTERFACE -->
         <h2>Done</h2>
-        <table border="1">
+        <table border="1" class="msr_table03">
             <tr>
                 <th>Seq</th>
                 <th>Task</th>
@@ -49,24 +60,10 @@
             </tr>
         </table>
 
-        <!-- REGISTRATION INTERFACE -->
-        <h2>Registration</h2>
-        <form role="form" th:action="@{/member/{mid}/check(mid=${mid})}" th:object="${form}" method="post">
-            <table>
-                <tr>
-                    <td><label>task: </label></td>
-                    <td><input type="text" required th:field="*{title}" /></td>
-                    <td>
-                        <p><input type="submit" value="確認する" /></p>
-                    </td>
-                </tr>
-            </table>
-        </form>
-
         <!-- EVERYBODY TODO -->
-    <tr>
-        <td><h3><a th:href=@{/member/{mid}/everyone(mid=${mid})}>みんなのTODO</a></h3></td>
-    </tr>
+
+        <span><br><a th:href=@{/member/{mid}/everyone(mid=${mid})}>みんなのTODO</a></span>
+        <span><a th:href=@{/member/login}>logout</a></span>
     </tr>
 
 

@@ -3,25 +3,26 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- 手書きcss, <head>の中に以下のcssを入れる -->
+    <link rel="stylesheet" th:href=@{/css/todo_css.css} />
 
     <title>ToDoアプリケーション</title>
 </head>
 
 <body>
     <h1>ToDoアプリケーション</h1>
-    <img src="@{../static/img/todo_people.png}" width="640px">
+    <img th:src="@{/img/todo_people.png}" width="640px"> <br />
     <p>
         ログインしてください．メンバーIDがない人は，管理者にお問い合わせください．
     </p>
-    <form role="form" th:action="@{/member/login-tmp}" method="get">
-        <table>
-            <tr>
-                <td><label>メンバーID: </label></td>
-                <td><input type="text" name="mid" /></td>           
-            </tr>
-        </table>
-        <p><input type="submit" value="確認する" /></p>
-    </form>
+
+    <div class="msr_search_06">
+        <form role="form" th:action="@{/member/login-tmp}" method="get">
+            <input type="text" required name="mid" value="" />
+            <button type="submit">確認</button>
+        </form>
+    </div>
+
 
 
 </body>

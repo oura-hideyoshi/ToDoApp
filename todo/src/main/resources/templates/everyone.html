@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href=@{/css/todo_css.css} />
     <title>みんなのTODO</title>
 </head>
 
@@ -11,7 +12,7 @@
 
     <!-- TODO INTERFACE -->
     <h2>ToDo</h2>
-    <table border="1">
+    <table border="1" class="msr_table03">
         <tr>
             <th>Seq</th>
             <th>Task</th>
@@ -28,7 +29,7 @@
 
     <!-- DONE INTERFACE -->
     <h2>Done</h2>
-    <table border="1">
+    <table border="1" class="msr_table03">
         <tr>
             <th>Seq</th>
             <th>Task</th>
@@ -45,9 +46,8 @@
         </tr>
     </table>
 
-    <tr>
-        <td><h3><a th:href=@{/member/{mid}/todos(mid=${mid})}>自分のToDOに戻る</a></h3></td>
-    </tr>
+    <span><br><a th:href=@{/member/{mid}/todos(mid=${mid})}>自分のToDOに戻る</a></span>
+
 </body>
 
 </html>

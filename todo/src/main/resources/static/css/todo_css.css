@@ -1,0 +1,158 @@
+/* htmlの周囲の余白を作る */
+body {
+    margin: 20px; /* 外側の余白を40pxにする */
+    padding: 0; /* 内側の余白を消す(念のため) */
+  }
+  
+  /* h1(タイトル)のデザイン */
+  h1 {
+    padding: 0.5em; /*文字周りの余白*/
+    color: #494949; /*文字色*/
+    background: #e6f2f5; /*背景色*/
+    border-left: solid 5px #78bbc7; /*左線（実線 太さ 色）*/
+  }
+  
+  /* h2, h3(見出し)のデザイン */
+  h2,
+  h3 {
+    margin: 20px;
+  
+    color: #494949; /*文字色*/
+    background: #e6f2f5; /*背景色*/
+    border-bottom: solid 3px #78bbc7; /*下線*/
+  }
+  
+  /* img(画像)のデザイン */
+  img {
+    margin: 20px;
+  }
+  
+
+  .msr_table03 {
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+    border-collapse: collapse;
+    line-height: 1.5;
+    text-align: left;
+    width: 100%;
+  }
+  .msr_table03 th {
+    background-color: #1B73BA;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px;
+    text-align: center;
+    vertical-align : middle;
+  }
+  .msr_table03 thead {
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+  }
+  
+  /* th偶数番号の設定 */
+  .msr_table03 thead th:nth-child(odd) {
+    background-color: #17619C;
+    border-right: 1px solid #17619C;
+  }
+  .msr_table03 td {
+    background-color: #F8F8F8;
+    border-right: 1px solid #8DA6AF;
+    border-top: 1px solid #8DA6AF;
+    font-size: 14px;
+    padding: 10px;
+    vertical-align: top;
+  }
+  .msr_table03 td:last-child {
+    border-right: none;
+  }
+  .msr_table03 tbody tr:first-child td {
+    border-top: none;
+  }
+  
+  /* tr奇数番号のth設定 */
+  .msr_table03 tr:nth-child(even) th {
+    background-color: #17619C;
+    border-bottom: 1px solid #17619C;
+    box-shadow: 2px 0 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 2px 0 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 2px 0 2px rgba(0,0,0,0.2);
+  }
+
+  
+  /* a(リンク)のデザイン */
+  a {
+    font-weight: bold; /*太字に*/
+    text-decoration: none; /*下線消す*/
+    background: skyblue; /*背景を水色に*/
+    color: white; /*文字を白に*/
+    padding: 5px 10px; /*内側の余白*/
+    border-radius: 20px; /*角を丸くする*/
+    font-family: 'Avenir', 'Arial'; /*フォントをいい感じに*/
+  }
+  
+  a:hover {
+    background: silver; /*背景色をシルバーに*/
+    text-decoration: none; /*下線を消す*/
+  }
+
+
+  .msr_search_06{
+    height:32px;
+    width:240px;
+    position:relative;
+  }
+  .msr_search_06 form input[type=text]{
+    width:240px;
+    height:32px;
+    padding:4px 40px 4px 8px;
+    border:none;
+    -webkit-border-radius:32px;
+       -moz-border-radius:32px;
+            border-radius:32px;
+    -webkit-appearance: none;
+    outline: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position:absolute;
+    background:#EEEEEE;
+    top:0;
+    right:0;
+    backface-visibility: hidden;
+    -webkit-transition: 0.25s ease-out;
+       -moz-transition: 0.25s ease-out;
+         -o-transition: 0.25s ease-out;
+            transition: 0.25s ease-out;
+  }
+  .msr_search_06 form input[type=text]:focus{
+    background:#F6F6F6;
+  }
+  .msr_search_06 form button{
+    width:64px;
+    height:32px;
+    color:#fff;
+    border:none;
+    -webkit-border-radius:16px;
+       -moz-border-radius:16px;
+            border-radius:16px;
+    background:#1B73BA;
+    display:inline-block;
+    -webkit-appearance: none;
+    outline: 0;
+    position:absolute;
+    top:0;
+    right:0;
+    cursor:pointer;
+    backface-visibility: hidden;
+    -webkit-transition: 0.3s ease-out;
+       -moz-transition: 0.3s ease-out;
+         -o-transition: 0.3s ease-out;
+            transition: 0.3s ease-out;
+  }
+  .msr_search_06 form button:hover{
+    opacity:0.8;
+  }
