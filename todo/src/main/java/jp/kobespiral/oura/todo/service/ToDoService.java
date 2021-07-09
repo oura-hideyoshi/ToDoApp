@@ -44,7 +44,7 @@ public class ToDoService {
     * @param mid
     * @return
     */
-    public ToDo setDone(Long seq){
+    public ToDo done(String mid, Long seq){
         // System.out.println(tRepo.findById(seq).get());
         ToDo t = tRepo.findById(seq).get();
         //tRepo.delete(t);

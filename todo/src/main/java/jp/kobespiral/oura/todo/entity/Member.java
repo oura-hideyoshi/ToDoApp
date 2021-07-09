@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor  // 本来java構文ではコンストラクターを作らねばクラスに引数が渡せないが、これが代わりをしている.
+@NoArgsConstructor
 @Entity
 public class Member {
     @Id
     String mid;   //メンバーID
-    String name;  //氏名
+    String name;  //名前
+    String password; //パスワード（暗号化済）
+    String role; //ロール
 }
